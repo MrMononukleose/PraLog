@@ -15,15 +15,15 @@ public class reader {
 			BufferedReader in = new BufferedReader(new FileReader(URL));
 			String zeile = null;
 			while ((zeile = in.readLine()) != null) {
-				if (count==2) {
+				if (count==2) {//Problemname einlesen
 					problemname = zeile;
 				}
-				if (count==4) {
+				if (count==4) {//Volmax, KapBmax,cls einlesen
 					String[] splitZeile = zeile.split(",");
 					vol_max = Float.parseFloat(splitZeile[0]);
 					kap_b_max = Float.parseFloat(splitZeile[1]);								
 				}
-					count++;
+				count++;//Zeile hochzählen
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -31,6 +31,5 @@ public class reader {
 		System.out.println(problemname);
 		System.out.println(vol_max);
 		System.out.println(kap_b_max);
-
 	}
 }
