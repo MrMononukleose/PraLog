@@ -1,0 +1,17 @@
+#Problemname
+Aufgabe 38
+#Volmax, KapBmax, c1s
+100000, 100000, 10000
+#Anzahl Gueter
+1
+#Name Gut, pi, c1i, c2i, c3i, vi, kmini, kmaxi, lmaxi
+#Ein Kommentar
+Gut1, 1, 100, 0.4, 100000, 0, 0, 100000, 100000
+#Verbraeuche
+50
+80
+100
+90
+60
+100
+#Noch ein Kommentar

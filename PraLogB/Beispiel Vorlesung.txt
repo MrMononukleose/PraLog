@@ -1,0 +1,15 @@
+#Problemname
+Beispiel Vorlesung
+#Volmax, KapBmax, c1s
+100000, 100000, 10000
+#Anzahl Gueter
+1
+#Name Gut, pi, c1i, c2i, c3i, vi, kmini, kmaxi, lmaxi
+Gut1, 20, 500, 0.04, 100000, 1, 0, 100000, 100000
+#Verbraeuche
+100
+120
+150
+100
+200
+250
