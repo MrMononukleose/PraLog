@@ -21,11 +21,7 @@ public class reader {
 				if (count==4) {
 					String[] splitZeile = zeile.split(",");
 					vol_max = Float.parseFloat(splitZeile[0]);
-					kap_b_max = Float.parseFloat(splitZeile[1]);
-					/*vol_max = Float.parseFloat(zeile.substring(0, zeile.indexOf(",")));
-					String zeile_tmp = zeile.substring(zeile.indexOf(","));
-					kap_b_max = Float.parseFloat(zeile_tmp.substring(0, zeile_tmp.indexOf(",")));*/
-					
+					kap_b_max = Float.parseFloat(splitZeile[1]);								
 				}
 					count++;
 			}
@@ -35,8 +31,6 @@ public class reader {
 		System.out.println(problemname);
 		System.out.println(vol_max);
 		System.out.println(kap_b_max);
-
-
 
 	}
 }
