@@ -11,8 +11,9 @@ public class Gut {
 	public int kmini;//Minimaler Bestand (in Stueck)
 	public int kmaxi;//Maximaler Bestand (in Stueck)
 	public int lmaxi;//Maximale Lagerdauer (in Perioden)
-	
-	public Gut(String name, float pi, float c1i, float c2i, float c3i, float vi, int kmini, int kmaxi, int lmaxi) {//Konstruktor
+	public int[] d;//Verbrauche
+
+	public Gut(String name, float pi, float c1i, float c2i, float c3i, float vi, int kmini, int kmaxi, int lmaxi, int[] d) {//Konstruktor
 		this.name = name;
 		this.pi = pi;
 		this.c1i = c1i;
@@ -22,6 +23,56 @@ public class Gut {
 		this.kmini = kmini;
 		this.kmaxi = kmaxi;
 		this.lmaxi = lmaxi;
+		this.d = d;
+	}	
+	
+	public int getSum_d() {
+		int sum_d = 0;
+		for(int t=0;t<d.length;t++) {
+			sum_d+=d[t];
+		}
+		return sum_d;		
+	}
+	
+	public float getAvg_d() {
+		float avg_d = getSum_d()/d.length;		
+		return avg_d;
+	}
+	
+	public int[] getMin_d() {
+		int[] min_d= new int[2];
+		min_d[0]=-1;
+		min_d[1]=-1;
+		for(int t=0;t<d.length;t++) {
+			if(min_d[0]==-1) {
+				min_d[0]=d[t];
+				min_d[1]=t+1;
+			} else {
+				if(min_d[0]>d[t]) {
+					min_d[0]=d[t];
+					min_d[1]=t+1;
+				}
+			}
+		}
+		return min_d;
+	}
+	
+	public int[] getMax_d() {
+		int[] max_d= new int[2];
+		max_d[0]=-1;
+		max_d[1]=-1;
+		for(int t=0;t<d.length;t++) {
+			if(max_d[0]==-1) {
+				max_d[0]=d[t];
+				max_d[1]=t+1;
+			} else {
+				if(max_d[0]<d[t]) {
+					max_d[0]=d[t];
+					max_d[1]=t+1;
+				}
+			}
+		}
+		return max_d;
 	}
 
 	public String getName() {
@@ -94,6 +145,14 @@ public class Gut {
 
 	public void setLmaxi(int lmaxi) {
 		this.lmaxi = lmaxi;
+	}
+	
+	public int[] getD() {
+		return d;
+	}
+
+	public void setD(int[] d) {
+		this.d = d;
 	}
 	
 }

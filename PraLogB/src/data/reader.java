@@ -68,17 +68,6 @@ public class reader {
 						kmini.add(Integer.parseInt(splitZeile[6]));
 						kmaxi.add(Integer.parseInt(splitZeile[7]));
 						lmaxi.add(Integer.parseInt(splitZeile[8]));
-
-						Gut gut = new Gut(splitZeile[0],
-								Float.parseFloat(splitZeile[1]),
-								Float.parseFloat(splitZeile[2]),
-								Float.parseFloat(splitZeile[3]),
-								Float.parseFloat(splitZeile[4]),
-								Float.parseFloat(splitZeile[5]),
-								Integer.parseInt(splitZeile[6]),
-								Integer.parseInt(splitZeile[7]),
-								Integer.parseInt(splitZeile[8]));
-						System.out.println(gut.getName());
 					}
 					if(count >= 4+n) {
 						verbraeuche.add(zeile);
@@ -145,12 +134,13 @@ public class reader {
 		int T = verbraeuche.size();
 		System.out.println("T:" + T);
 		Integer[][] d = new Integer[T][n]; 
-		for(int i=0;i<T;i++) {
-			String[] splitZeile = verbraeuche.get(i).split(", ");
+		for(int t=0;t<T;t++) {
+			String[] splitZeile = verbraeuche.get(t).split(", ");
 			for(int j=0;j<n;j++) {
-				d[i][j] = Integer.parseInt(splitZeile[j]);
+				d[t][j] = Integer.parseInt(splitZeile[j]);
 			}
 		}
+		
 		JTable table = new JTable(d, cNames);
 
 		JFrame frame = new JFrame("Tabellen");
@@ -158,7 +148,19 @@ public class reader {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
-
-
+		
+		for(int i=0;i<n;i++) {
+			int[] d_this = new int[T];
+			for(int t=0;t<T;t++) {
+				d_this[t] = d[t][i];
+			}
+			Gut gut = new Gut(gut_name.get(i),pi.get(i),c1i.get(i),c2i.get(i),c3i.get(i),vi.get(i),kmini.get(i),kmaxi.get(i),lmaxi.get(i),d_this);
+			System.out.println(gut.getSum_d());
+			System.out.println(gut.getAvg_d());
+			int[] min_d=gut.getMin_d();
+			int[] max_d=gut.getMax_d();
+			System.out.println(min_d[0] + " Periode:" + min_d[1]);
+			System.out.println(max_d[0] + " Periode:" + max_d[1]);
+		}
 	}
 }
