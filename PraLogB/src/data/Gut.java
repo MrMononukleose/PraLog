@@ -3,28 +3,45 @@ package data;
 public class Gut {
 	
 	public String name;//Name des Gutes
-	public float pi;//Einstandspreis
-	public float c1i;//Bestellfixe Kosten
-	public float c2i;//Lagerkostensatz
-	public float c3i;//Fehlmengenkostensatz
-	public float vi;//Volumen des Produkts (je Stueck)
+	public float p;//Einstandspreis
+	public float c1;//Bestellfixe Kosten
+	public float c2;//Lagerkostensatz
+	public float c3;//Fehlmengenkostensatz
+	public float v;//Volumen des Produkts (je Stueck)
 	public int kmini;//Minimaler Bestand (in Stueck)
 	public int kmaxi;//Maximaler Bestand (in Stueck)
 	public int lmaxi;//Maximale Lagerdauer (in Perioden)
 	public int[] d;//Verbrauche
 
-	public Gut(String name, float pi, float c1i, float c2i, float c3i, float vi, int kmini, int kmaxi, int lmaxi, int[] d) {//Konstruktor
+	public Gut(String name, float p, float c1, float c2, float c3, float v, int kmini, int kmaxi, int lmaxi, int[] d) {//Konstruktor
 		this.name = name;
-		this.pi = pi;
-		this.c1i = c1i;
-		this.c2i = c2i;
-		this.c3i = c3i;
-		this.vi = vi;
+		this.p = p;
+		this.c1 = c1;
+		this.c2 = c2;
+		this.c3 = c3;
+		this.v = v;
 		this.kmini = kmini;
 		this.kmaxi = kmaxi;
 		this.lmaxi = lmaxi;
 		this.d = d;
 	}	
+	
+	
+	public float calcGesamtwert() {
+		float gesamtwert=0;
+		for(int i=0;i<d.length;i++) {
+			gesamtwert+=p*d[i];
+		}
+		return gesamtwert;
+	}
+	
+	public float calcGesamtvolumen() {
+		float gesamtvolumen=0;
+		for(int i=0;i<d.length;i++) {
+			gesamtvolumen+=v*d[i];
+		}
+		return gesamtvolumen;
+	}
 	
 	public int getSum_d() {
 		int sum_d = 0;
@@ -83,44 +100,46 @@ public class Gut {
 		this.name = name;
 	}
 
-	public float getPi() {
-		return pi;
+	
+
+	public float getP() {
+		return p;
 	}
 
-	public void setPi(float pi) {
-		this.pi = pi;
+	public void setP(float p) {
+		this.p = p;
 	}
 
-	public float getC1i() {
-		return c1i;
+	public float getC1() {
+		return c1;
 	}
 
-	public void setC1i(float c1i) {
-		this.c1i = c1i;
+	public void setC1(float c1) {
+		this.c1 = c1;
 	}
 
-	public float getC2i() {
-		return c2i;
+	public float getC2() {
+		return c2;
 	}
 
-	public void setC2i(float c2i) {
-		this.c2i = c2i;
+	public void setC2(float c2) {
+		this.c2 = c2;
 	}
 
-	public float getC3i() {
-		return c3i;
+	public float getC3() {
+		return c3;
 	}
 
-	public void setC3i(float c3i) {
-		this.c3i = c3i;
+	public void setC3(float c3) {
+		this.c3 = c3;
 	}
 
-	public float getVi() {
-		return vi;
+	public float getV() {
+		return v;
 	}
 
-	public void setVi(float vi) {
-		this.vi = vi;
+	public void setV(float v) {
+		this.v = v;
 	}
 
 	public int getKmini() {

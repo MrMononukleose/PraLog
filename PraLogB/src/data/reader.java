@@ -39,6 +39,12 @@ public class reader {
 		ArrayList<Integer> lmaxi = new ArrayList<Integer>();
 		// Verbräuche
 		ArrayList<String> verbraeuche = new ArrayList<String>();
+		//Gesamtverbrauch ueber alle Gueter
+		float gesamtverbrauchAlleGueter=0;
+		//Gesamtwert ueber alle Gueter
+		float gesamtvolAlleGueter=0;
+		//Gesamtvolumen ueber alle Gueter
+		float gesamtwertAlleGueter=0;
 		int count = 1;
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(URL));
@@ -155,12 +161,23 @@ public class reader {
 				d_this[t] = d[t][i];
 			}
 			Gut gut = new Gut(gut_name.get(i),pi.get(i),c1i.get(i),c2i.get(i),c3i.get(i),vi.get(i),kmini.get(i),kmaxi.get(i),lmaxi.get(i),d_this);
-			System.out.println(gut.getSum_d());
+			float sum_d = gut.getSum_d();
+			gesamtverbrauchAlleGueter+=sum_d;
+			System.out.println("Summe der Verbraeuche: " + sum_d);
 			System.out.println(gut.getAvg_d());
 			int[] min_d=gut.getMin_d();
 			int[] max_d=gut.getMax_d();
 			System.out.println(min_d[0] + " Periode:" + min_d[1]);
 			System.out.println(max_d[0] + " Periode:" + max_d[1]);
+			float gesamtwert=gut.calcGesamtwert();
+			gesamtwertAlleGueter+=gesamtwert;
+			float gesamtvolumen = gut.calcGesamtvolumen();
+			gesamtvolAlleGueter+=gesamtvolumen;
+			System.out.println("Gesamtwert: " + gesamtwert);
+			System.out.println("Gesamtvolumen: " + gesamtvolumen);
 		}
+		System.out.println("Gesamtverbrauch ueber alle Gueter: " + gesamtverbrauchAlleGueter);
+		System.out.println("Gesamtwert ueber alle Gueter: " + gesamtwertAlleGueter);
+		System.out.println("Gesamtvolumen ueber alle Gueter: " + gesamtvolAlleGueter);
 	}
 }
