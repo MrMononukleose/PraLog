@@ -12,6 +12,8 @@ public class Gut {
 	public int kmaxi;//Maximaler Bestand (in Stueck)
 	public int lmaxi;//Maximale Lagerdauer (in Perioden)
 	public int[] d;//Verbrauche
+	public int[] z;//Lagerbestaende am Ende einer Periode
+	public int[] bestellpolitik;
 
 	public Gut(String name, float p, float c1, float c2, float c3, float v, int kmini, int kmaxi, int lmaxi, int[] d) {//Konstruktor
 		this.name = name;
@@ -26,6 +28,38 @@ public class Gut {
 		this.d = d;
 	}	
 	
+	public void setBestellpolitik(int[] bestellpolitik) {
+		for(int i=0;i<d.length;i++) {
+			if(i==0 || i%3==0) {
+				this.bestellpolitik[i] = 1;
+			} else {
+				this.bestellpolitik[i] = 0;
+			}
+		}
+	}
+	
+	public int calcKosten() {
+		int c=0;
+		for(int i=0;i<d.length;i++) {
+			if(i==0 || i%3==0) {
+				int x = calcBestellmenge(i+1);
+				if(x>0) {
+					c+=c1;
+				}
+			}
+			c+=d[i]*c2*p;
+		}
+		
+		return c;
+	}
+	
+	public int calcBestellmenge(int t) {
+		int x=0;
+		for(int i=t;i<t+3;i++) {
+			x+=d[i-1];
+		}
+		return x;
+	}
 	
 	public float calcGesamtwert() {
 		float gesamtwert=0;
